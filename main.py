@@ -1,6 +1,21 @@
 """Writes the entry text to /output/entry.txt.
 
 Python 3.13, standard library only, no network.
+
+How it runs: ``python3 main.py`` calls main(), which creates
+/output if needed and writes the TEXT constant to
+/output/entry.txt as UTF-8 with no trailing newline.
+
+How TEXT is built and verified: TEXT is a parenthesized
+string literal (two pieces joined by implicit concatenation);
+its value is exactly one line of 122 characters. The
+competition gate is UTF-8, 1–200 characters, not only
+whitespace — 122 characters passes. The em dash before
+"in that order" is a literal U+2014 character in the source
+(not an escape), so the file must be opened with
+encoding="utf-8" to keep the output byte-identical.
+Expected output: 124 bytes, sha256
+532298ad0e986f5547ec55468ac4cca66a140785114e28b5c8698b7f2057b73b.
 """
 
 # The entry text is one line, 122 characters, inside the 200-character
